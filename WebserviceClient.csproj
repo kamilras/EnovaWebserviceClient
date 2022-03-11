@@ -14,6 +14,22 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\kamil.ras\Desktop\PKOL\IntegracjaAlfresco\Klient\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,9 +50,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>C5A13C177B296F312305E5D7FFA72A502D8DE20F</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>WebserviceClient_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -58,6 +87,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\CreateService.cs" />
+    <Compile Include="Utils\Serializer.cs" />
+    <Compile Include="Webservice\Data.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -65,6 +97,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Connected Services\Enova365Webservice\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -86,12 +123,68 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\Enova365Webservice\MethodInvokerService.wsdl" />
+    <None Include="Connected Services\Enova365Webservice\MethodInvokerService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Enova365Webservice\MethodInvokerService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Enova365Webservice\MethodInvokerService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Enova365Webservice\MethodInvokerService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Enova365Webservice\MethodInvokerService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Enova365Webservice\WebserviceClient.Enova365Webservice.InvokeServiceMethodResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <EmbeddedResource Include="WebserviceClient.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="WebserviceClient_TemporaryKey.pfx" />
+    <None Include="Webservice\XSD\Common.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webservice\XSD\Data.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webservice\XSD\FakturaAdd.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webservice\XSD\FakturaAddResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webservice\XSD\KalendarzSwiatGet.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webservice\XSD\KalendarzSwiatGetResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webservice\XSD\NieobecnoscGet.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webservice\XSD\NieobecnoscGetResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webservice\XSD\Error.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webservice\XSD\ZajeciaKomorniczeGet.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webservice\XSD\ZajeciaKomorniczeGetResponse.xsd">
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +192,40 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\Enova365Webservice\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\Enova365Webservice\MethodInvokerService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\Enova365Webservice\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\Enova365Webservice\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\Enova365Webservice\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Webservice\XSD Tool config.txt" />
+    <Resource Include="Webservice\XSDParameters.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

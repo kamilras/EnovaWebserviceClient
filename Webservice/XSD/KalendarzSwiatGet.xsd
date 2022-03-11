@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="KalendarzSwiatGet" xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+  <xs:element name="KalendarzSwiatGet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="QueryId" type="xs:string" nillable="true"/>
+        <xs:element name="Rok" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FakturaAdd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:id="http://tempuri.org/Common.xsd">
+  <xs:import namespace="http://tempuri.org/Common.xsd"/>
+  <xs:element name="FakturaAdd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="QueryId" type="xs:string" nillable="true"/>
+        <xs:element name="Pracownik" type="id:PracownikPKOL"/>
+        <xs:element name="Faktura" type="id:Faktura"/>
+        <xs:element name="Pozycje">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Pozycja" minOccurs ="1" maxOccurs="200">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Netto" type="xs:decimal"/>
+                    <xs:element name="Vat" type="xs:decimal"/>
+                    <xs:element name="Brutto" type="xs:decimal"/>
+                    <xs:element name="Opis" type="xs:string" nillable="true"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Netto" type="xs:decimal"/>
+        <xs:element name="Vat" type="xs:decimal"/>
+        <xs:element name="Brutto" type="xs:decimal"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Common" targetNamespace="http://tempuri.org/Common.xsd" xmlns="http://tempuri.org/Common.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:complexType name="Identifier">
+    <xs:choice minOccurs="1" maxOccurs="1">
+      <xs:element name="NumerKadrowy" type="xs:string"/>
+      <xs:element name="Login" type="xs:string"/>
+    </xs:choice>
+  </xs:complexType>
+  
+  <xs:complexType name="PracownikPKOL">
+    <xs:sequence>
+      <xs:element name="NumerKadrowy" type="xs:string" nillable="true"/>
+      <xs:element name="Akronim" type="xs:string" nillable="true"/>
+      <xs:element name="Login" type="xs:string" nillable="true"/>
+      <xs:element name="Imie" type="xs:string" nillable="true"/>
+      <xs:element name="Nazwisko" type="xs:string" nillable="true"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Faktura">
+    <xs:sequence>
+      <xs:element name="NumerFaktury" type="xs:string" nillable="true"/>
+      <xs:element name="NumerKontaGlownego" type="xs:string" nillable="true"/>
+      <xs:element name="Opis" type="xs:string" nillable="true"/>
+      <xs:element name="Od" type="xs:date" nillable="true"/>
+      <xs:element name="Do" type="xs:date" nillable="true"/>
+      <xs:element name="TerminPlatnosci" type="xs:date" nillable="true"/>
+      <xs:element name="Prowizja" type="xs:decimal"/>
+      <xs:element name="FormaWspolpracy" type="FormaWspolpracy"/>
+      <xs:element name="CzyZaplacona" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:simpleType name="FormaWspolpracy">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Pracownik"/>
+      <xs:enumeration value="Kontraktor"/>
+      <xs:enumeration value="PraktykantStazysta"/>
+      <xs:enumeration value="SieciZewnetrzne"/>
+      <xs:enumeration value="PracownikZewnetrzny"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="StatusWspolpracy">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Aktywny"/>
+      <xs:enumeration value="Nieaktywny"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="RodzajNieobecnosci">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Nieobecnosc"/>
+      <xs:enumeration value="Urlop"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CzyPracuje">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Tak"/>
+      <xs:enumeration value="Nie"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+</xs:schema>

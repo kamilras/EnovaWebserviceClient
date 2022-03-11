@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="KalendarzSwiatGetResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+  <xs:element name="KalendarzSwiatGetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="QueryId" type="xs:string" nillable="true"/>
+        <xs:element name="DniWolne">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DzienWolny" minOccurs ="1" maxOccurs="200">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Dzien" type="xs:date"/>
+                    <xs:element name="Nazwa" type="xs:string"/>
+                    <xs:element name="CzyUstawowoWolne" type="xs:boolean"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,15 @@
+﻿Konfiguracja:
+VisualStudio\Tools\External Tools...
+
+Title: 
+XSD XSDParameters.xml
+Command: 
+C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\Bin\x64\xsd.exe
+Arguments: 
+/l:cs /c /P:XSDParameters.xml
+Initial Directory: 
+$(ItemDir)
+
+
+Używanie:
+Zaznacz plik XSDParameters.xml, uruchom narzędzie "XSD XSDParameters.xml"

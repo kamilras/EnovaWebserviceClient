@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8e676315-1497-4b69-ba53-0d316c0cc4e9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/Business/MethodInvokerService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MethodInvokerService.xsd" MetadataType="Schema" ID="c1791a52-02cc-4078-beae-b63d294e8072" SourceId="1" SourceUrl="http://localhost/Business/MethodInvokerService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MethodInvokerService1.xsd" MetadataType="Schema" ID="07d41c08-8740-4491-8db6-68042fb022a7" SourceId="1" SourceUrl="http://localhost/Business/MethodInvokerService.svc?xsd=xsd3" />
+    <MetadataFile FileName="MethodInvokerService.wsdl" MetadataType="Wsdl" ID="3e0e81a0-d3c3-4819-94ce-8a715909dd78" SourceId="1" SourceUrl="http://localhost/Business/MethodInvokerService.svc?wsdl" />
+    <MetadataFile FileName="MethodInvokerService2.xsd" MetadataType="Schema" ID="c9fbf1e5-6c9d-4e52-9c69-87960615c955" SourceId="1" SourceUrl="http://localhost/Business/MethodInvokerService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MethodInvokerService.disco" MetadataType="Disco" ID="c8d50cd4-f7e2-4331-914a-e47512c583ed" SourceId="1" SourceUrl="http://localhost/Business/MethodInvokerService.svc?disco" />
+    <MetadataFile FileName="MethodInvokerService3.xsd" MetadataType="Schema" ID="10bcc9e9-82fd-48dc-b693-8b757f00a6b8" SourceId="1" SourceUrl="http://localhost/Business/MethodInvokerService.svc?xsd=xsd4" />
+    <MetadataFile FileName="MethodInvokerService4.xsd" MetadataType="Schema" ID="5d74ebfb-5bf0-44a0-b1cf-efa35424127b" SourceId="1" SourceUrl="http://localhost/Business/MethodInvokerService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

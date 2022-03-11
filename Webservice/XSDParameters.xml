@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/'>
+  <generateClasses language='CS' namespace='WebserviceClient'>
+    <schema>XSD\Common.xsd</schema>
+    <schema>XSD\FakturaAdd.xsd</schema>
+    <schema>XSD\FakturaAddResponse.xsd</schema>
+    <schema>XSD\KalendarzSwiatGet.xsd</schema>
+    <schema>XSD\KalendarzSwiatGetResponse.xsd</schema>
+    <schema>XSD\NieobecnoscGet.xsd</schema>
+    <schema>XSD\NieobecnoscGetResponse.xsd</schema>
+    <schema>XSD\ZajeciaKomorniczeGet.xsd</schema>
+    <schema>XSD\ZajeciaKomorniczeGetResponse.xsd</schema>
+    <schema>XSD\Data.xsd</schema>
+  </generateClasses>
+</xsd>

@@ -6,16 +6,28 @@
         xmlns:local="clr-namespace:WebserviceClient"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="139,321,0,0" VerticalAlignment="Top" Width="141" Height="49"/>
-        <TextBox HorizontalAlignment="Left" Height="378" Margin="382,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="385"/>
-        <Label Content="User:" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Width="87"/>
-        <Label Content="MethodName:" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Width="87"/>
-        <Label Content="Password:" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" Width="87"/>
-        <Label Content="Database:" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Width="87"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="102,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="102,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="102,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
-        <ComboBox HorizontalAlignment="Left" Margin="102,108,0,0" VerticalAlignment="Top" Width="178"/>
+    <Grid Margin="0,0,3.6,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="SendBtn" Content="Send" HorizontalAlignment="Left" Margin="165,349,0,0" VerticalAlignment="Top" Width="141" Height="49" Click="SendBtn_Click" Background="#FFA2CA93" />
+        <TextBox x:Name="PanelTxtBox" HorizontalAlignment="Left" Height="314" Margin="321,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="446"/>
+        <Label Content="User:" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="118"/>
+        <Label Content="MethodName:" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="118"/>
+        <Label Content="Password:" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" Width="118"/>
+        <Label Content="Database:" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="118"/>
+        <TextBox x:Name="UserTxtBox" HorizontalAlignment="Left" Height="23" Margin="128,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
+        <TextBox x:Name="DatabaseTxtBox" HorizontalAlignment="Left" Height="23" Margin="128,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
+        <TextBox x:Name="PasswordTxtBox" HorizontalAlignment="Left" Height="23" Margin="128,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
+        <ComboBox x:Name="MethodNameTxtBox" HorizontalAlignment="Left" Margin="128,175,0,0" VerticalAlignment="Top" Width="178" SelectionChanged="MethodNameTxtBox_SelectionChanged"/>
+        <Label Content="Serwis namespace" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="118"/>
+        <TextBox x:Name="NamespaceTxtBox" HorizontalAlignment="Left" Height="23" Margin="128,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="540"/>
+        <RadioButton x:Name="RequestRadioBtn" Content="Request" HorizontalAlignment="Left" Margin="697,28,0,0" VerticalAlignment="Top" Checked="RequestBtn_Checked"/>
+        <RadioButton x:Name="ResponseRadioBtn" Content="Response" HorizontalAlignment="Left" Margin="697,60,0,0" VerticalAlignment="Top" Checked="ResponseBtn_Checked"/>
+        <Button x:Name="SaveBtn" Content="Save" HorizontalAlignment="Left" Margin="10,349,0,0" VerticalAlignment="Top" Width="141" Height="49" Click="SaveBtn_Click" />
+        <Label Content="Host:" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="118"/>
+        <TextBox x:Name="HostTxtBox" HorizontalAlignment="Left" Height="23" Margin="128,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="540"/>
+        <ComboBox x:Name="IdentityCmbBox" HorizontalAlignment="Left" Margin="128,202,0,0" VerticalAlignment="Top" Width="178" SelectionChanged="MethodNameTxtBox_SelectionChanged"/>
+        <Label Content="Identity:" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.092,-1.327" Width="113" Height="26"/>
     </Grid>
 </Window>
