@@ -212,7 +212,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Webservice\XSD Tool config.txt" />
     <Resource Include="Webservice\XSDParameters.xml" />
   </ItemGroup>
   <ItemGroup>
