@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="NieobecnoscGetResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:id="http://tempuri.org/Common.xsd">
+<xs:schema id="PracownikGetResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:id="http://tempuri.org/Common.xsd" >
   <xs:import namespace="http://tempuri.org/Common.xsd"/>
-  <xs:element name="NieobecnoscGetResponse">
+  <xs:element name="PracownikGetResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="QueryId" type="xs:string" />
+        <xs:element name="QueryId" type="xs:string"/>
         <xs:element name="Zastepujacy" type="id:PracownikPKOL"/>
         <xs:element name="Zastepowany" type="id:PracownikPKOL"/>
         <xs:element name="Od" type="xs:date"/>

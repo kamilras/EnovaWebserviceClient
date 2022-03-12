@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="NieobecnoscGet" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:id="http://tempuri.org/Common.xsd">
+<xs:schema id="PracownikGet" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:id="http://tempuri.org/Common.xsd">
   <xs:import namespace="http://tempuri.org/Common.xsd"/>
-  <xs:element name="NieobecnoscGet">
+  <xs:element name="PracownikGet">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="QueryId" type="xs:string"/>

@@ -21,14 +21,33 @@
   <xs:complexType name="Faktura">
     <xs:sequence>
       <xs:element name="NumerFaktury" type="xs:string" nillable="true"/>
-      <xs:element name="NumerKontaGlownego" type="xs:string" nillable="true"/>
       <xs:element name="Opis" type="xs:string" nillable="true"/>
       <xs:element name="Od" type="xs:date" nillable="true"/>
       <xs:element name="Do" type="xs:date" nillable="true"/>
       <xs:element name="TerminPlatnosci" type="xs:date" nillable="true"/>
       <xs:element name="Prowizja" type="xs:decimal"/>
-      <xs:element name="FormaWspolpracy" type="FormaWspolpracy"/>
       <xs:element name="CzyZaplacona" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Info">
+    <xs:sequence>
+      <xs:element name="WystapilBlad" type="xs:boolean"/>
+      <xs:element name="Komunikaty">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Komunikat" minOccurs ="0" maxOccurs="200">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="Typ" type="TypKomunikatu" />
+                  <xs:element name="Kod" type="xs:string" />
+                  <xs:element name="Opis" type="xs:string" nillable="true"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   
@@ -60,6 +79,14 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="Tak"/>
       <xs:enumeration value="Nie"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="TypKomunikatu">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Informacja"/>
+      <xs:enumeration value="Ostrzezenie"/>
+      <xs:enumeration value="Blad"/>
     </xs:restriction>
   </xs:simpleType>
   

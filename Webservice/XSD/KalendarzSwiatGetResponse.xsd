@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="KalendarzSwiatGetResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+<xs:schema id="KalendarzSwiatGetResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:id="http://tempuri.org/Common.xsd" >
+  <xs:import namespace="http://tempuri.org/Common.xsd"/>
   <xs:element name="KalendarzSwiatGetResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="QueryId" type="xs:string" nillable="true"/>
+        <xs:element name="QueryId" type="xs:string" />
         <xs:element name="DniWolne">
           <xs:complexType>
             <xs:sequence>
@@ -19,6 +20,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Info" type="id:Info"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

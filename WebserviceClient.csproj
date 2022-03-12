@@ -180,10 +180,22 @@
     <None Include="Webservice\XSD\Error.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Webservice\XSD\PracownikGet.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webservice\XSD\PracownikGetResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Webservice\XSD\ZajeciaKomorniczeGet.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Webservice\XSD\ZajeciaKomorniczeGetResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webservice\XSD\ZajeciaKomorniczePlatnosciGet.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Webservice\XSD\ZajeciaKomorniczePlatnosciGetResponse.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

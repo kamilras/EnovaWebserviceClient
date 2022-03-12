@@ -8,6 +8,8 @@
     <schema>XSD\KalendarzSwiatGetResponse.xsd</schema>
     <schema>XSD\NieobecnoscGet.xsd</schema>
     <schema>XSD\NieobecnoscGetResponse.xsd</schema>
+    <schema>XSD\PracownikGet.xsd</schema>
+    <schema>XSD\PracownikGetResponse.xsd</schema>
     <schema>XSD\ZajeciaKomorniczeGet.xsd</schema>
     <schema>XSD\ZajeciaKomorniczeGetResponse.xsd</schema>
     <schema>XSD\Data.xsd</schema>
