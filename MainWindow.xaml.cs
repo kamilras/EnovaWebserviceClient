@@ -17,6 +17,7 @@ using WebserviceClient.Enova365Webservice;
 using WebserviceClient.Utils;
 using System.IO;
 using System.Security.Principal;
+using CWI.PKOL.Webservice;
 
 namespace WebserviceClient
 {
@@ -47,9 +48,9 @@ namespace WebserviceClient
 
             List<string> listaMetod = new List<string>()
             {
-                "NieobecnoscGet",
+                "NieobecnosciGet",
                 "FakturaAdd",
-                "PracownikGet",
+                "PodstawoweDaneGet",
                 "ZajeciaKomorniczeGet",
                 "KalendarzSwiatGet",
             };
@@ -86,14 +87,17 @@ namespace WebserviceClient
 
             switch ((string)MethodNameTxtBox.SelectedItem)
             {
-                case "NieobecnoscGet":
-                    Response = serviceClient.Invoke<NieobecnoscGetResponse>("NieobecnoscGet").Serialize();
+                case "NieobecnosciGet":
+                    Response = serviceClient.Invoke<NieobecnosciZastepstwaGetResponse>("NieobecnosciGet").Serialize();
                     break;
                 case "FakturaAdd":
                     Response = serviceClient.Invoke<FakturaAddResponse>("FakturaAdd").Serialize();
                     break;
                 case "ZajeciaKomorniczeGet":
-                    Response = serviceClient.Invoke<ZajeciaKomorniczeGetResponse>("ZajeciaKomorniczeGet").Serialize();
+                    Response = serviceClient.Invoke<ZajeciaKomorniczePlatnosciGetResponse>("ZajeciaKomorniczeGet").Serialize();
+                    break;
+                case "PodstawoweDaneGet":
+                    Response = serviceClient.Invoke<PodstawoweDaneGetResponse>("PodstawoweDaneGet").Serialize();
                     break;
                 default:
                     Response = "Nie znaleziono metody";
@@ -124,20 +128,34 @@ namespace WebserviceClient
             config.Save(ConfigurationSaveMode.Modified);
         }
 
-        public string Reqest_NieobecnoscGet(ItemChoiceType itemChoiceType, string identity)
+        public string Reqest_NieobecnoscGet(ItemChoiceType itemChoiceType, string identity, params DateTime?[] daty)
         {
-            NieobecnoscGet nieobecnoscGet = new NieobecnoscGet();
+            NieobecnosciZastepstwaGet nieobecnoscGet = new NieobecnosciZastepstwaGet();
             nieobecnoscGet.Pracownik = new Identifier() { Item = identity, ItemElementName = itemChoiceType };
+
+            if (daty.Count() >= 1)
+                nieobecnoscGet.Od = daty[0] == null ? DateTime.MinValue : (DateTime)daty[0];
+
+            if(daty.Count() == 2)
+                nieobecnoscGet.Do = daty[1] == null ? DateTime.MaxValue : (DateTime)daty[1];
 
             return nieobecnoscGet.Serialize();
         }
 
         public string Reqest_ZajeciaKomorniczeGet(ItemChoiceType itemChoiceType, string identity)
         {
-            ZajeciaKomorniczeGet zajeciaKomorniczeGet = new ZajeciaKomorniczeGet();
+            ZajeciaKomorniczePlatnosciGet zajeciaKomorniczeGet = new ZajeciaKomorniczePlatnosciGet();
             zajeciaKomorniczeGet.Pracownik = new Identifier() { Item = identity, ItemElementName = itemChoiceType };
 
             return zajeciaKomorniczeGet.Serialize();
+        }
+
+        private string Reqest_PodstawoweDaneGet(ItemChoiceType itemChoiceType, string identity)
+        {
+            PodstawoweDaneGet podstawoweDaneGet = new PodstawoweDaneGet();
+            podstawoweDaneGet.Pracownik = new Identifier() { Item = identity, ItemElementName = itemChoiceType };
+
+            return podstawoweDaneGet.Serialize();
         }
 
         public string Reqest_FakturaAdd()
@@ -145,11 +163,20 @@ namespace WebserviceClient
             FakturaAdd fakturaAdd = new FakturaAdd();
             fakturaAdd.Pracownik = new PracownikPKOL();
 
-            FakturaAddPozycja[] fakturaAddPozycje = new FakturaAddPozycja[]{
-                new FakturaAddPozycja()
+            fakturaAdd.Faktura = new Faktura()
+            {
+                Pozycje = new FakturaPozycja[]
+                {
+                    new FakturaPozycja()
+                    {
+                        Brutto = 100,
+                        Netto = 80,
+                        NazwaSkladnika = "skladnik",
+                        Opis = "opis",
+                        VAT = 20
+                    }
+                }
             };
-
-            fakturaAdd.Faktura = new Faktura();
 
             return fakturaAdd.Serialize();
         }
@@ -160,7 +187,7 @@ namespace WebserviceClient
 
             switch (metoda)
             {
-                case "NieobecnoscGet":
+                case "NieobecnosciGet":
                     Request = Reqest_NieobecnoscGet((ItemChoiceType)IdentityCmbBox.SelectedItem, "???");
                     break;
                 case "FakturaAdd":
@@ -168,6 +195,9 @@ namespace WebserviceClient
                     break;
                 case "ZajeciaKomorniczeGet":
                     Request = Reqest_ZajeciaKomorniczeGet((ItemChoiceType)IdentityCmbBox.SelectedItem, "???");
+                    break;
+                case "PodstawoweDaneGet":
+                    Request = Reqest_PodstawoweDaneGet((ItemChoiceType)IdentityCmbBox.SelectedItem, "???");
                     break;
                 default:
                     Request = "Nie znaleziono metody";
@@ -187,6 +217,42 @@ namespace WebserviceClient
         private void ResponseBtn_Checked(object sender, RoutedEventArgs e)
         {
             PanelTxtBox.Text = Response;
+        }
+
+        private void DateFromDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string metoda = MethodNameTxtBox?.SelectedItem?.ToString();
+
+            DateTime?[] dates = new DateTime?[] { DateFromDatePicker.SelectedDate, DateToDatePicker.SelectedDate};
+
+            switch (metoda)
+            {
+                case "NieobecnosciGet":
+                    Request = Reqest_NieobecnoscGet((ItemChoiceType)IdentityCmbBox.SelectedItem, "???", dates);
+                    break;
+            }
+
+            PanelTxtBox.Text = Request;
+            RequestRadioBtn.IsChecked = true;
+            Response = string.Empty;
+        }
+
+        private void DateToDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string metoda = MethodNameTxtBox?.SelectedItem?.ToString();
+
+            DateTime?[] dates = new DateTime?[] { DateFromDatePicker.SelectedDate, DateToDatePicker.SelectedDate };
+
+            switch (metoda)
+            {
+                case "NieobecnosciGet":
+                    Request = Reqest_NieobecnoscGet((ItemChoiceType)IdentityCmbBox.SelectedItem, "???", dates);
+                    break;
+            }
+
+            PanelTxtBox.Text = Request;
+            RequestRadioBtn.IsChecked = true;
+            Response = string.Empty;
         }
     }
 }

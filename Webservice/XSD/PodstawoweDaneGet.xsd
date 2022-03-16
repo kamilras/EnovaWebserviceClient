@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="NieobecnoscGet" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:id="http://tempuri.org/Common.xsd">
+<xs:schema id="PodstawoweDaneGet" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:id="http://tempuri.org/Common.xsd">
   <xs:import namespace="http://tempuri.org/Common.xsd"/>
-  <xs:element name="NieobecnoscGet">
+  <xs:element name="PodstawoweDaneGet">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="QueryId" type="xs:string"/>
         <xs:element name="Pracownik" type="id:Identifier" />
+        <xs:element name="FormaWspolpracy" type="id:FormaWspolpracy" nillable="true"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

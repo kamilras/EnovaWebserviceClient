@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NieobecnosciZastepstwaGetResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:id="http://tempuri.org/Common.xsd">
+  <xs:import namespace="http://tempuri.org/Common.xsd"/>
+  <xs:element name="NieobecnosciZastepstwaGetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="QueryId" type="xs:string" />
+        <xs:element name="Nieobecnosci">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nieobecnosc" minOccurs ="1" maxOccurs="200">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Zastepujacy" type="id:PracownikPKOL"/>
+                    <xs:element name="Zastepowany" type="id:PracownikPKOL"/>
+                    <xs:element name="Od" type="xs:date"/>
+                    <xs:element name="Do" type="xs:date"/>
+                    <xs:element name="RodzajNieobecnosci" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataZakonczenia" type="xs:date"/>
+        <xs:element name="CzyPracuje" type="xs:boolean"/>
+        <xs:element name="Info" type="id:Info"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

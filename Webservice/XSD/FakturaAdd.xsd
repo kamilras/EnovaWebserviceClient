@@ -7,25 +7,14 @@
         <xs:element name="QueryId" type="xs:string"/>
         <xs:element name="Pracownik" type="id:PracownikPKOL"/>
         <xs:element name="Faktura" type="id:Faktura"/>
-        <xs:element name="Pozycje">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="Pozycja" minOccurs ="1" maxOccurs="200">
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element name="Netto" type="xs:decimal"/>
-                    <xs:element name="Vat" type="xs:decimal"/>
-                    <xs:element name="Brutto" type="xs:decimal"/>
-                    <xs:element name="Opis" type="xs:string" nillable="true"/>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
+        <xs:element name="UmowaOd" type="xs:date"/>
+        <xs:element name="UmowaDo" type="xs:date"/>
         <xs:element name="Netto" type="xs:decimal"/>
-        <xs:element name="Vat" type="xs:decimal"/>
+        <xs:element name="VAT" type="xs:decimal"/>
         <xs:element name="Brutto" type="xs:decimal"/>
+        <xs:element name="DataRozliczenia" type="xs:date"/>
+        <xs:element name="FormaWspolpracy" type="id:FormaWspolpracy"/>
+        <xs:element name="NumerKontaGlownego" type="xs:string"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

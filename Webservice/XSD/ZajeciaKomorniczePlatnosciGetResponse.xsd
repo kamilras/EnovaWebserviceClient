@@ -1,15 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="ZajeciaKomorniczeGetResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:id="http://tempuri.org/Common.xsd">
+<xs:schema id="ZajeciaKomorniczePlatnosciGetResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:id="http://tempuri.org/Common.xsd">
   <xs:import namespace="http://tempuri.org/Common.xsd"/>
-  <xs:element name="ZajeciaKomorniczeGetResponse">
+  <xs:element name="ZajeciaKomorniczePlatnosciGetResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="Pracownik" type="id:PracownikPKOL"/>
-        <xs:element name="Faktura" type="id:Faktura" nillable="true"/>
-        <xs:element name="NumerKontaGlownego" type="xs:string" nillable="true"/>
-        <xs:element name="FormaWspolpracy" type="id:FormaWspolpracy"/>
-        <xs:element name="KontoSAP" type="xs:string"/>
-        <xs:element name="KontoLEO" type="xs:string"/>
+        <xs:element name="QueryId" type="xs:string"/>
+        <xs:element name="Wyplaty">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Pracownik" type="id:PracownikPKOL"/>
+              <xs:element name="Wyplata" minOccurs ="0" maxOccurs="200">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Faktura" type="id:Faktura" nillable="true"/>
+                    <xs:element name="NumerKontaGlownego" type="xs:string" nillable="true"/>
+                    <xs:element name="FormaWspolpracy" type="id:FormaWspolpracy"/>
+                    <xs:element name="KontoSAP" type="xs:string"/>
+                    <xs:element name="KontoLEO" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="Info" type="id:Info"/>
       </xs:sequence>
     </xs:complexType>

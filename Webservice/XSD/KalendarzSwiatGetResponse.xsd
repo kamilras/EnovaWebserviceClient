@@ -11,7 +11,7 @@
               <xs:element name="DzienWolny" minOccurs ="1" maxOccurs="200">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="Dzien" type="xs:date"/>
+                    <xs:element name="Data" type="xs:date"/>
                     <xs:element name="Nazwa" type="xs:string"/>
                     <xs:element name="CzyUstawowoWolne" type="xs:boolean"/>
                   </xs:sequence>

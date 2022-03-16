@@ -29,5 +29,7 @@
         <TextBox x:Name="HostTxtBox" HorizontalAlignment="Left" Height="23" Margin="128,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="540"/>
         <ComboBox x:Name="IdentityCmbBox" HorizontalAlignment="Left" Margin="128,202,0,0" VerticalAlignment="Top" Width="178" SelectionChanged="MethodNameTxtBox_SelectionChanged"/>
         <Label Content="Identity:" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.092,-1.327" Width="113" Height="26"/>
+        <DatePicker x:Name="DateFromDatePicker" HorizontalAlignment="Left" Margin="128,234,0,0" VerticalAlignment="Top" Width="178" SelectedDateChanged="DateFromDatePicker_SelectedDateChanged"/>
+        <DatePicker x:Name="DateToDatePicker" HorizontalAlignment="Left" Margin="128,262,0,0" VerticalAlignment="Top" Width="178" SelectedDateChanged="DateToDatePicker_SelectedDateChanged"/>
     </Grid>
 </Window>

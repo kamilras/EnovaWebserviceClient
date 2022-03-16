@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PodstawoweDaneGetResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:id="http://tempuri.org/Common.xsd" >
+  <xs:import namespace="http://tempuri.org/Common.xsd"/>
+  <xs:element name="PodstawoweDaneGetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="QueryId" type="xs:string"/>
+        <xs:element name="Pracownik" type="id:PracownikPKOL"/>
+        <xs:element name="Departament" type="xs:string"/>
+        <xs:element name="JednostkaOrganizacyjna" type="id:JednostkaOrganizacyjna"/>
+        <xs:element name="MPK" type="xs:string"/>
+        <xs:element name="TelefonKomorkowy" type="xs:string"/>
+        <xs:element name="TelefonStacjonarny" type="xs:string"/>
+        <xs:element name="Email" type="xs:string"/>
+        <xs:element name="FormaWspolpracy" type="id:FormaWspolpracy"/>
+        <xs:element name="StatusWspolpracy" type="id:StatusWspolpracy"/>
+        <xs:element name="NIP" type="xs:string"/>
+        <xs:element name="REGON" type="xs:string"/>
+        <xs:element name="NazwaDzialalnosci" type="xs:string"/>
+        <xs:element name="OpisStanowiska" type="id:OpisStanowiska"/>
+        <xs:element name="LokalizacjaMiejscaPracy" type="xs:string"/>
+        <xs:element name="Przelozeni" type="id:Przelozeni"/>
+        <xs:element name="Info" type="id:Info"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

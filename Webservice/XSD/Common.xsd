@@ -7,7 +7,7 @@
       <xs:element name="Login" type="xs:string"/>
     </xs:choice>
   </xs:complexType>
-  
+
   <xs:complexType name="PracownikPKOL">
     <xs:sequence>
       <xs:element name="NumerKadrowy" type="xs:string" nillable="true"/>
@@ -24,6 +24,23 @@
       <xs:element name="Opis" type="xs:string" nillable="true"/>
       <xs:element name="Od" type="xs:date" nillable="true"/>
       <xs:element name="Do" type="xs:date" nillable="true"/>
+      <xs:element name="Pozycje">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Pozycja" minOccurs ="1" maxOccurs="200">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="Netto" type="xs:decimal"/>
+                  <xs:element name="VAT" type="xs:decimal"/>
+                  <xs:element name="Brutto" type="xs:decimal"/>
+                  <xs:element name="NazwaSkladnika" type="xs:string"/>
+                  <xs:element name="Opis" type="xs:string" nillable="true"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="TerminPlatnosci" type="xs:date" nillable="true"/>
       <xs:element name="Prowizja" type="xs:decimal"/>
       <xs:element name="CzyZaplacona" type="xs:boolean"/>
@@ -50,14 +67,34 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  
+
+  <xs:complexType name="JednostkaOrganizacyjna">
+    <xs:sequence>
+      <xs:element name="Kod" type="xs:string" />
+      <xs:element name="Nazwa" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Przelozeni">
+    <xs:sequence>
+      <xs:element name="BezposredniPrzelozony" type="PracownikPKOL"/>
+      <xs:element name="DyrektorDepartamentu" type="PracownikPKOL"/>
+      <xs:element name="CzlonekZarzadu" type="PracownikPKOL"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="OpisStanowiska">
+    <xs:sequence>
+      <xs:element name="Stanowisko" type="xs:string"/>
+      <xs:element name="Funkcja" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:simpleType name="FormaWspolpracy">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Pracownik"/>
-      <xs:enumeration value="Kontraktor"/>
-      <xs:enumeration value="PraktykantStazysta"/>
-      <xs:enumeration value="SieciZewnetrzne"/>
-      <xs:enumeration value="PracownikZewnetrzny"/>
+      <xs:enumeration value="Zleceniobiorca"/>
+      <xs:enumeration value="Współpracownik"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -68,26 +105,26 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <xs:simpleType name="RodzajNieobecnosci">
+  <!--<xs:simpleType name="RodzajNieobecnosci">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Nieobecnosc"/>
+      <xs:enumeration value="Nieobecność"/>
       <xs:enumeration value="Urlop"/>
     </xs:restriction>
-  </xs:simpleType>
+  </xs:simpleType>-->
 
-  <xs:simpleType name="CzyPracuje">
+  <!--<xs:simpleType name="CzyPracuje">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Tak"/>
       <xs:enumeration value="Nie"/>
     </xs:restriction>
-  </xs:simpleType>
+  </xs:simpleType>-->
 
   <xs:simpleType name="TypKomunikatu">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Informacja"/>
-      <xs:enumeration value="Ostrzezenie"/>
-      <xs:enumeration value="Blad"/>
+      <xs:enumeration value="Ostrzeżenie"/>
+      <xs:enumeration value="Błąd"/>
     </xs:restriction>
   </xs:simpleType>
-  
+
 </xs:schema>
