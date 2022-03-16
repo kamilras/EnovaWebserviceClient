@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CWI.PKOL.Webservice;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -91,13 +92,28 @@ namespace WebserviceClient.Utils
                 StoreName.Root,
                 X509FindType.FindByThumbprint,
                 "495f825c2d9c8d950cf397a4f856e2ee03db2146");
-                //$@"C:\Users\kamil.ras\Desktop\PKOL\IntegracjaAlfresco\Certyfikat\CertyfikatEnova.cer");
+            //$@"C:\Users\kamil.ras\Desktop\PKOL\IntegracjaAlfresco\Certyfikat\CertyfikatEnova.cer");
 
             //proxy.ClientCredentials.ClientCertificate.SetCertificate = new 
+            IInfoKomunikat komunikat;
 
             var serviceResult = proxy.InvokeServiceMethod(_params);
             if (string.IsNullOrEmpty(serviceResult.ExceptionMessage) == false)
-                throw new Exception(serviceResult.ExceptionMessage);
+            {
+                komunikat = Serializer.Deserialize<IInfoKomunikat>(serviceResult.ResultInstance.ToString());
+                komunikat.Info.Komunikaty = new InfoKomunikat[]
+                {
+                    new InfoKomunikat()
+                    {
+                        Kod = "Exception",
+                        Opis = serviceResult.ExceptionMessage,
+                        Typ = TypKomunikatu.Błąd
+                    }
+                };
+
+                return (T)komunikat;
+            }
+            //throw new Exception(serviceResult.ExceptionMessage);
             return Serializer.Deserialize<T>(serviceResult.ResultInstance.ToString());
         }
 

@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebserviceClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="0,0,3.6,0">
+        Title="MainWindow" Height="507.6" Width="800">
+    <Grid Margin="0,0,4,-4">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="SendBtn" Content="Send" HorizontalAlignment="Left" Margin="165,349,0,0" VerticalAlignment="Top" Width="141" Height="49" Click="SendBtn_Click" Background="#FFA2CA93" />
-        <TextBox x:Name="PanelTxtBox" HorizontalAlignment="Left" Height="314" Margin="321,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="446"/>
+        <Button x:Name="SendBtn" Content="Send" HorizontalAlignment="Left" Margin="165,402,0,0" VerticalAlignment="Top" Width="141" Height="49" Click="SendBtn_Click" Background="#FFA2CA93" />
+        <TextBox x:Name="PanelTxtBox" HorizontalAlignment="Left" Height="367" Margin="321,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="446"/>
         <Label Content="User:" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="118"/>
         <Label Content="MethodName:" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="118"/>
         <Label Content="Password:" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" Width="118"/>
@@ -24,12 +24,20 @@
         <TextBox x:Name="NamespaceTxtBox" HorizontalAlignment="Left" Height="23" Margin="128,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="540"/>
         <RadioButton x:Name="RequestRadioBtn" Content="Request" HorizontalAlignment="Left" Margin="697,28,0,0" VerticalAlignment="Top" Checked="RequestBtn_Checked"/>
         <RadioButton x:Name="ResponseRadioBtn" Content="Response" HorizontalAlignment="Left" Margin="697,60,0,0" VerticalAlignment="Top" Checked="ResponseBtn_Checked"/>
-        <Button x:Name="SaveBtn" Content="Save" HorizontalAlignment="Left" Margin="10,349,0,0" VerticalAlignment="Top" Width="141" Height="49" Click="SaveBtn_Click" />
+        <Button x:Name="SaveBtn" Content="Save" HorizontalAlignment="Left" Margin="10,402,0,0" VerticalAlignment="Top" Width="141" Height="49" Click="SaveBtn_Click" />
         <Label Content="Host:" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="118"/>
         <TextBox x:Name="HostTxtBox" HorizontalAlignment="Left" Height="23" Margin="128,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="540"/>
         <ComboBox x:Name="IdentityCmbBox" HorizontalAlignment="Left" Margin="128,202,0,0" VerticalAlignment="Top" Width="178" SelectionChanged="MethodNameTxtBox_SelectionChanged"/>
         <Label Content="Identity:" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.092,-1.327" Width="113" Height="26"/>
-        <DatePicker x:Name="DateFromDatePicker" HorizontalAlignment="Left" Margin="128,234,0,0" VerticalAlignment="Top" Width="178" SelectedDateChanged="DateFromDatePicker_SelectedDateChanged"/>
-        <DatePicker x:Name="DateToDatePicker" HorizontalAlignment="Left" Margin="128,262,0,0" VerticalAlignment="Top" Width="178" SelectedDateChanged="DateToDatePicker_SelectedDateChanged"/>
+        <DatePicker x:Name="DateFromDatePicker" HorizontalAlignment="Left" Margin="128,288,0,0" VerticalAlignment="Top" Width="178" SelectedDateChanged="DateFromDatePicker_SelectedDateChanged"/>
+        <DatePicker x:Name="DateToDatePicker" HorizontalAlignment="Left" Margin="128,316,0,0" VerticalAlignment="Top" Width="178" SelectedDateChanged="DateToDatePicker_SelectedDateChanged"/>
+        <TextBox x:Name="PracownikTxtBox" HorizontalAlignment="Left" Height="23" Margin="128,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" TextChanged="PracownikTxtBox_TextChanged"/>
+        <TextBox x:Name="RokTxtBox" HorizontalAlignment="Left" Height="23" Margin="128,343,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" TextChanged="RokTxtBox_TextChanged"/>
+        <Label Content="Pracownik:" HorizontalAlignment="Left" Margin="10,229,0,0" VerticalAlignment="Top" Width="113"/>
+        <Label Content="Od" HorizontalAlignment="Left" Margin="10,288,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.312,-0.723" Width="118"/>
+        <Label Content="Do" HorizontalAlignment="Left" Margin="10,314,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.312,-0.723" Width="118"/>
+        <Label Content="Rok" HorizontalAlignment="Left" Margin="10,339,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.312,-0.723" Width="118"/>
+        <Label Content="Forma wspópracy:" HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top" Width="113"/>
+        <ComboBox x:Name="FormaWspolpracyCmbBox" HorizontalAlignment="Left" Margin="128,257,0,0" VerticalAlignment="Top" Width="178" SelectionChanged="FormaWspolpracyCmbBox_SelectionChanged"/>
     </Grid>
 </Window>

@@ -18,6 +18,7 @@ using WebserviceClient.Utils;
 using System.IO;
 using System.Security.Principal;
 using CWI.PKOL.Webservice;
+using WebserviceClient.Webservice;
 
 namespace WebserviceClient
 {
@@ -46,26 +47,35 @@ namespace WebserviceClient
             var config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
             AppSettingsSection appSettings = config.GetSection("appSettings") as AppSettingsSection;
 
-            List<string> listaMetod = new List<string>()
+            List<string> metodyLista = new List<string>()
             {
-                "NieobecnosciGet",
+                "NieobecnosciZastepstwaGet",
                 "FakturaAdd",
                 "PodstawoweDaneGet",
-                "ZajeciaKomorniczeGet",
+                "ZajeciaKomorniczePlatnosciGet",
                 "KalendarzSwiatGet",
             };
 
-            MethodNameTxtBox.ItemsSource = listaMetod;
+            MethodNameTxtBox.ItemsSource = metodyLista;
 
             IdentityCmbBox.ItemsSource = Enum.GetValues(typeof(ItemChoiceType)).Cast<ItemChoiceType>();
-            IdentityCmbBox.SelectedItem = (ItemChoiceType)IdentityCmbBox.ItemsSource.Cast<ItemChoiceType>().FirstOrDefault();
+            IdentityCmbBox.SelectedItem = IdentityCmbBox.ItemsSource.Cast<ItemChoiceType>().FirstOrDefault();
+
+            FormaWspolpracyCmbBox.ItemsSource = Enum.GetValues(typeof(FormaWspolpracy)).Cast<FormaWspolpracy>();
+            FormaWspolpracyCmbBox.SelectedItem = FormaWspolpracyCmbBox.ItemsSource.Cast<FormaWspolpracy>().FirstOrDefault();
 
             HostTxtBox.Text = appSettings.Settings["Host"].Value;
             UserTxtBox.Text = appSettings.Settings["User"].Value;
             PasswordTxtBox.Text = appSettings.Settings["Password"].Value;
             DatabaseTxtBox.Text = appSettings.Settings["Database"].Value;
             NamespaceTxtBox.Text = appSettings.Settings["Namespace"].Value;
-            MethodNameTxtBox.Text = appSettings.Settings["MethodName"].Value;
+            IdentityCmbBox.Text = appSettings.Settings["Identity"].Value;
+            PracownikTxtBox.Text = appSettings.Settings["Pracownik"].Value;
+            DateFromDatePicker.Text = appSettings.Settings["Od"].Value;
+            DateToDatePicker.Text = appSettings.Settings["Do"].Value;
+            RokTxtBox.Text = appSettings.Settings["Rok"].Value;
+
+            MethodNameTxtBox.SelectedItem = appSettings.Settings["MethodName"].Value;
 
             RequestRadioBtn.IsChecked = true;
         }
@@ -87,17 +97,20 @@ namespace WebserviceClient
 
             switch ((string)MethodNameTxtBox.SelectedItem)
             {
-                case "NieobecnosciGet":
-                    Response = serviceClient.Invoke<NieobecnosciZastepstwaGetResponse>("NieobecnosciGet").Serialize();
+                case "NieobecnosciZastepstwaGet":
+                    Response = serviceClient.Invoke<NieobecnosciZastepstwaGetResponse>("NieobecnosciZastepstwaGet").Serialize();
                     break;
                 case "FakturaAdd":
                     Response = serviceClient.Invoke<FakturaAddResponse>("FakturaAdd").Serialize();
                     break;
-                case "ZajeciaKomorniczeGet":
-                    Response = serviceClient.Invoke<ZajeciaKomorniczePlatnosciGetResponse>("ZajeciaKomorniczeGet").Serialize();
+                case "ZajeciaKomorniczePlatnosciGet":
+                    Response = serviceClient.Invoke<ZajeciaKomorniczePlatnosciGetResponse>("ZajeciaKomorniczePlatnosciGet").Serialize();
                     break;
                 case "PodstawoweDaneGet":
                     Response = serviceClient.Invoke<PodstawoweDaneGetResponse>("PodstawoweDaneGet").Serialize();
+                    break;
+                case "KalendarzSwiatGet":
+                    Response = serviceClient.Invoke<KalendarzSwiatGetResponse>("KalendarzSwiatGet").Serialize();
                     break;
                 default:
                     Response = "Nie znaleziono metody";
@@ -124,37 +137,45 @@ namespace WebserviceClient
             appSettings.Settings["Database"].Value = DatabaseTxtBox.Text;
             appSettings.Settings["Namespace"].Value = NamespaceTxtBox.Text;
             appSettings.Settings["MethodName"].Value = (string)MethodNameTxtBox.SelectedItem;
+            appSettings.Settings["Identity"].Value = IdentityCmbBox.Text;
+            appSettings.Settings["Pracownik"].Value = PracownikTxtBox.Text;
+            appSettings.Settings["Od"].Value = DateFromDatePicker.Text;
+            appSettings.Settings["Do"].Value = DateToDatePicker.Text;
+            appSettings.Settings["Rok"].Value = RokTxtBox.Text;
 
             config.Save(ConfigurationSaveMode.Modified);
         }
 
-        public string Reqest_NieobecnoscGet(ItemChoiceType itemChoiceType, string identity, params DateTime?[] daty)
+        public string Reqest_KalendarzSwiatGet()
+        {
+            KalendarzSwiatGet kalendarzSwiatGet = new KalendarzSwiatGet();
+            kalendarzSwiatGet.Rok = int.Parse(RokTxtBox.Text);
+            return kalendarzSwiatGet.Serialize();
+        }
+
+        public string Reqest_NieobecnosciZastepstwaGet()
         {
             NieobecnosciZastepstwaGet nieobecnoscGet = new NieobecnosciZastepstwaGet();
-            nieobecnoscGet.Pracownik = new Identifier() { Item = identity, ItemElementName = itemChoiceType };
-
-            if (daty.Count() >= 1)
-                nieobecnoscGet.Od = daty[0] == null ? DateTime.MinValue : (DateTime)daty[0];
-
-            if(daty.Count() == 2)
-                nieobecnoscGet.Do = daty[1] == null ? DateTime.MaxValue : (DateTime)daty[1];
-
+            nieobecnoscGet.Pracownik = new Identifier() { Item = PracownikTxtBox.Text, ItemElementName = (ItemChoiceType)IdentityCmbBox.SelectedItem };
+            nieobecnoscGet.Od = (DateTime)DateFromDatePicker.SelectedDate;
+            nieobecnoscGet.Do = (DateTime)DateToDatePicker.SelectedDate;
             return nieobecnoscGet.Serialize();
         }
 
-        public string Reqest_ZajeciaKomorniczeGet(ItemChoiceType itemChoiceType, string identity)
+        public string Reqest_ZajeciaKomorniczePlatnosciGet()
         {
             ZajeciaKomorniczePlatnosciGet zajeciaKomorniczeGet = new ZajeciaKomorniczePlatnosciGet();
-            zajeciaKomorniczeGet.Pracownik = new Identifier() { Item = identity, ItemElementName = itemChoiceType };
-
+            zajeciaKomorniczeGet.Pracownik = new Identifier() { Item = PracownikTxtBox.Text, ItemElementName = (ItemChoiceType)IdentityCmbBox.SelectedItem };
+            zajeciaKomorniczeGet.Od = (DateTime)DateFromDatePicker.SelectedDate;
+            zajeciaKomorniczeGet.Do = (DateTime)DateToDatePicker.SelectedDate;
             return zajeciaKomorniczeGet.Serialize();
         }
 
-        private string Reqest_PodstawoweDaneGet(ItemChoiceType itemChoiceType, string identity)
+        private string Reqest_PodstawoweDaneGet()
         {
             PodstawoweDaneGet podstawoweDaneGet = new PodstawoweDaneGet();
-            podstawoweDaneGet.Pracownik = new Identifier() { Item = identity, ItemElementName = itemChoiceType };
-
+            podstawoweDaneGet.Pracownik = new Identifier() { Item = PracownikTxtBox.Text, ItemElementName = (ItemChoiceType)IdentityCmbBox.SelectedItem };
+            podstawoweDaneGet.FormaWspolpracy = (FormaWspolpracy)FormaWspolpracyCmbBox.SelectedItem;
             return podstawoweDaneGet.Serialize();
         }
 
@@ -172,7 +193,7 @@ namespace WebserviceClient
                         Brutto = 100,
                         Netto = 80,
                         NazwaSkladnika = "skladnik",
-                        Opis = "opis",
+                        Opis = "Opis",
                         VAT = 20
                     }
                 }
@@ -180,35 +201,6 @@ namespace WebserviceClient
 
             return fakturaAdd.Serialize();
         }
-
-        private void MethodNameTxtBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string metoda = MethodNameTxtBox?.SelectedItem?.ToString();
-
-            switch (metoda)
-            {
-                case "NieobecnosciGet":
-                    Request = Reqest_NieobecnoscGet((ItemChoiceType)IdentityCmbBox.SelectedItem, "???");
-                    break;
-                case "FakturaAdd":
-                    Request = Reqest_FakturaAdd();
-                    break;
-                case "ZajeciaKomorniczeGet":
-                    Request = Reqest_ZajeciaKomorniczeGet((ItemChoiceType)IdentityCmbBox.SelectedItem, "???");
-                    break;
-                case "PodstawoweDaneGet":
-                    Request = Reqest_PodstawoweDaneGet((ItemChoiceType)IdentityCmbBox.SelectedItem, "???");
-                    break;
-                default:
-                    Request = "Nie znaleziono metody";
-                    break;
-            }
-
-            PanelTxtBox.Text = Request;
-            RequestRadioBtn.IsChecked = true;
-            Response = string.Empty;
-        }
-
         private void RequestBtn_Checked(object sender, RoutedEventArgs e)
         {
             PanelTxtBox.Text = Request;
@@ -219,34 +211,54 @@ namespace WebserviceClient
             PanelTxtBox.Text = Response;
         }
 
+        private void MethodNameTxtBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
+        }
+
         private void DateFromDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            string metoda = MethodNameTxtBox?.SelectedItem?.ToString();
-
-            DateTime?[] dates = new DateTime?[] { DateFromDatePicker.SelectedDate, DateToDatePicker.SelectedDate};
-
-            switch (metoda)
-            {
-                case "NieobecnosciGet":
-                    Request = Reqest_NieobecnoscGet((ItemChoiceType)IdentityCmbBox.SelectedItem, "???", dates);
-                    break;
-            }
-
-            PanelTxtBox.Text = Request;
-            RequestRadioBtn.IsChecked = true;
-            Response = string.Empty;
+            Update();
         }
 
         private void DateToDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            Update();
+        }
+        private void PracownikTxtBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Update();
+        }
+
+        private void FormaWspolpracyCmbBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
+        }
+
+        private void RokTxtBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Update();
+        }
+
+        public void Update()
+        {
             string metoda = MethodNameTxtBox?.SelectedItem?.ToString();
-
-            DateTime?[] dates = new DateTime?[] { DateFromDatePicker.SelectedDate, DateToDatePicker.SelectedDate };
-
             switch (metoda)
             {
-                case "NieobecnosciGet":
-                    Request = Reqest_NieobecnoscGet((ItemChoiceType)IdentityCmbBox.SelectedItem, "???", dates);
+                case "NieobecnosciZastepstwaGet":
+                    Request = Reqest_NieobecnosciZastepstwaGet();
+                    break;
+                case "PodstawoweDaneGet":
+                    Request = Reqest_PodstawoweDaneGet();
+                    break;
+                case "ZajeciaKomorniczeGet":
+                    Request = Reqest_ZajeciaKomorniczePlatnosciGet();
+                    break;
+                case "FakturaAdd":
+                    Request = Reqest_FakturaAdd();
+                    break;
+                case "KalendarzSwiatGet":
+                    Request = Reqest_KalendarzSwiatGet();
                     break;
             }
 

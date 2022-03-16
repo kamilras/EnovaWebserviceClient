@@ -90,6 +90,9 @@
     <Compile Include="Utils\CreateService.cs" />
     <Compile Include="Utils\Serializer.cs" />
     <Compile Include="Webservice\Data.cs" />
+    <Compile Include="Webservice\IIdentifierData.cs" />
+    <Compile Include="Webservice\IIdentifierPracownik.cs" />
+    <Compile Include="Webservice\IInfoKomunikat.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -153,6 +156,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="WebserviceClient_TemporaryKey.pfx" />
+    <Compile Include="Webservice\Data.Extensions.cs" />
     <None Include="Webservice\XSD\Common.xsd">
       <SubType>Designer</SubType>
     </None>
