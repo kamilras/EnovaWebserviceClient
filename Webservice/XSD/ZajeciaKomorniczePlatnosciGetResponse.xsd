@@ -8,21 +8,31 @@
         <xs:element name="Wyplaty">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Pracownik" type="id:PracownikPKOL"/>
               <xs:element name="Wyplata" minOccurs ="0" maxOccurs="200">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="Faktura" type="id:Faktura" nillable="true"/>
-                    <xs:element name="NumerKontaGlownego" type="xs:string" nillable="true"/>
-                    <xs:element name="FormaWspolpracy" type="id:FormaWspolpracy"/>
-                    <xs:element name="KontoSAP" type="xs:string"/>
-                    <xs:element name="KontoLEO" type="xs:string"/>
+                    <xs:element name="Faktury" minOccurs ="0" maxOccurs="200">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Faktura" type="id:Faktura"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="UmowaOd" type="xs:date"/>
+                    <xs:element name="UmowaDo" type="xs:date"/>
+                    <xs:element name="DataRozliczenia" type="xs:date"/>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Pracownik" type="id:PracownikPKOL"/>
+        <xs:element name="NumerKontaGlownego" type="xs:string" nillable="true"/>
+        <xs:element name="FormaWspolpracy" type="id:FormaWspolpracy"/>
+        <xs:element name="KontoSAP" type="xs:string"/>
+        <xs:element name="KontoLEO" type="xs:string"/>
+        <xs:element name="CzyZajecia" type="xs:boolean"/>
         <xs:element name="Info" type="id:Info"/>
       </xs:sequence>
     </xs:complexType>

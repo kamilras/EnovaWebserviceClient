@@ -8,17 +8,19 @@ using WebserviceClient.Webservice;
 
 namespace CWI.PKOL.Webservice
 {
-	//public partial class PodstawoweDaneGet : IIdentifierPracownik
-	//{
-	//}
-	//public partial class ZajeciaKomorniczePlatnosciGet : IIdentifierPracownik, IIdentifierData
-	//{
-	//}
-
-	//public partial class NieobecnosciZastepstwaGet : IIdentifierPracownik, IIdentifierData
-	//{
-	//}
-	public partial class KalendarzSwiatGetResponse : IInfoKomunikat
+    public partial class PodstawoweDaneGetResponse : IInfoKomunikat
+    {
+    }
+    public partial class ZajeciaKomorniczePlatnosciGetResponse : IInfoKomunikat
+    {
+    }
+    public partial class NieobecnosciZastepstwaGetResponse : IInfoKomunikat
+    {
+    }
+    public partial class KalendarzSwiatGetResponse : IInfoKomunikat
+	{
+	}
+    public partial class FakturaAddResponse : IInfoKomunikat
 	{
 	}
 }

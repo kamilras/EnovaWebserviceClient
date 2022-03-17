@@ -251,7 +251,7 @@ namespace WebserviceClient
                 case "PodstawoweDaneGet":
                     Request = Reqest_PodstawoweDaneGet();
                     break;
-                case "ZajeciaKomorniczeGet":
+                case "ZajeciaKomorniczePlatnosciGet":
                     Request = Reqest_ZajeciaKomorniczePlatnosciGet();
                     break;
                 case "FakturaAdd":

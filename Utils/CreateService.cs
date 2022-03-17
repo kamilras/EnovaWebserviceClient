@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.Text;
@@ -66,7 +67,7 @@ namespace WebserviceClient.Utils
         //}
 
         public T Invoke<T>(string methodName)
-          where T : class
+        //where T : class
         {
             var binding = new BasicHttpsBinding()
             {
@@ -79,11 +80,11 @@ namespace WebserviceClient.Utils
                 CloseTimeout = new TimeSpan(0, 10, 0),
                 OpenTimeout = new TimeSpan(0, 10, 0)
             };
-            
+
             binding.Security.Mode = BasicHttpsSecurityMode.Transport;
             binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Certificate;
             binding.Security.Message.ClientCredentialType = BasicHttpMessageCredentialType.Certificate;
-            
+
             _params.MethodName = methodName;
             var endPointAdress = new EndpointAddress(_endPointAdress);
             var proxy = new MethodInvokerServiceClient(binding, endPointAdress);
@@ -95,28 +96,16 @@ namespace WebserviceClient.Utils
             //$@"C:\Users\kamil.ras\Desktop\PKOL\IntegracjaAlfresco\Certyfikat\CertyfikatEnova.cer");
 
             //proxy.ClientCredentials.ClientCertificate.SetCertificate = new 
-            IInfoKomunikat komunikat;
+            IInfoKomunikat komunikat = null;
 
             var serviceResult = proxy.InvokeServiceMethod(_params);
             if (string.IsNullOrEmpty(serviceResult.ExceptionMessage) == false)
-            {
-                komunikat = Serializer.Deserialize<IInfoKomunikat>(serviceResult.ResultInstance.ToString());
-                komunikat.Info.Komunikaty = new InfoKomunikat[]
-                {
-                    new InfoKomunikat()
-                    {
-                        Kod = "Exception",
-                        Opis = serviceResult.ExceptionMessage,
-                        Typ = TypKomunikatu.Błąd
-                    }
-                };
-
-                return (T)komunikat;
-            }
-            //throw new Exception(serviceResult.ExceptionMessage);
-            return Serializer.Deserialize<T>(serviceResult.ResultInstance.ToString());
+                //throw new Exception(serviceResult.ExceptionMessage);
+                komunikat = Info(methodName, serviceResult.ExceptionMessage);
+            else
+                komunikat = (IInfoKomunikat)Serializer.Deserialize<T>(serviceResult.ResultInstance.ToString());
+            return (T)komunikat;
         }
-
 
         // callback used to validate the certificate in an SSL conversation
         private static bool ValidateRemoteCertificate(object sender, X509Certificate cert, X509Chain chain, SslPolicyErrors policyErrors)
@@ -128,6 +117,40 @@ namespace WebserviceClient.Utils
             }
 
             return result;
+        }
+
+        public static IInfoKomunikat Info(string metoda, string exceptionMessage)
+        {
+            IInfoKomunikat komunikat = null;
+            switch (metoda)
+            {
+                case "NieobecnosciZastepstwaGet":
+                    komunikat = new NieobecnosciZastepstwaGetResponse();
+                    break;
+                case "FakturaAdd":
+                    komunikat = new FakturaAddResponse();
+                    break;
+                case "ZajeciaKomorniczePlatnosciGet":
+                    komunikat = new ZajeciaKomorniczePlatnosciGetResponse();
+                    break;
+                case "PodstawoweDaneGet":
+                    komunikat = new PodstawoweDaneGetResponse();
+                    break;
+                case "KalendarzSwiatGet":
+                    komunikat = new KalendarzSwiatGetResponse();
+                    break;
+            }
+            komunikat.Info = new Info();
+            komunikat.Info.Komunikaty = new InfoKomunikat[]
+            {
+                new InfoKomunikat()
+                {
+                    Kod = "!!!!!!!!!!!!!! Inner Exception !!!!!!!!!!!!",
+                    Opis = exceptionMessage,
+                    Typ = TypKomunikatu.Błąd
+                }
+            };
+            return komunikat;
         }
     }
 }

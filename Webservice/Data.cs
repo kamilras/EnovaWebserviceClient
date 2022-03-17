@@ -26,7 +26,7 @@ namespace CWI.PKOL.Webservice {
         
         private string queryIdField;
         
-        private PracownikPKOL pracownikField;
+        private Identifier pracownikField;
         
         private Faktura fakturaField;
         
@@ -59,7 +59,7 @@ namespace CWI.PKOL.Webservice {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PracownikPKOL Pracownik {
+        public Identifier Pracownik {
             get {
                 return this.pracownikField;
             }
@@ -174,72 +174,50 @@ namespace CWI.PKOL.Webservice {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/Common.xsd")]
-    public partial class PracownikPKOL {
+    public partial class Identifier {
         
-        private string numerKadrowyField;
+        private string itemField;
         
-        private string akronimField;
-        
-        private string loginField;
-        
-        private string imieField;
-        
-        private string nazwiskoField;
+        private ItemChoiceType itemElementNameField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public string NumerKadrowy {
+        [System.Xml.Serialization.XmlElementAttribute("Login", typeof(string), Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlElementAttribute("NumerKadrowy", typeof(string), Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+        public string Item {
             get {
-                return this.numerKadrowyField;
+                return this.itemField;
             }
             set {
-                this.numerKadrowyField = value;
+                this.itemField = value;
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public string Akronim {
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public ItemChoiceType ItemElementName {
             get {
-                return this.akronimField;
+                return this.itemElementNameField;
             }
             set {
-                this.akronimField = value;
+                this.itemElementNameField = value;
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/Common.xsd", IncludeInSchema=false)]
+    public enum ItemChoiceType {
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public string Login {
-            get {
-                return this.loginField;
-            }
-            set {
-                this.loginField = value;
-            }
-        }
+        [System.Xml.Serialization.XmlEnumAttribute(":Login")]
+        Login,
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public string Imie {
-            get {
-                return this.imieField;
-            }
-            set {
-                this.imieField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public string Nazwisko {
-            get {
-                return this.nazwiskoField;
-            }
-            set {
-                this.nazwiskoField = value;
-            }
-        }
+        [System.Xml.Serialization.XmlEnumAttribute(":NumerKadrowy")]
+        NumerKadrowy,
     }
     
     /// <remarks/>
@@ -783,58 +761,6 @@ namespace CWI.PKOL.Webservice {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/Common.xsd")]
-    public partial class Identifier {
-        
-        private string itemField;
-        
-        private ItemChoiceType itemElementNameField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Login", typeof(string), Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlElementAttribute("NumerKadrowy", typeof(string), Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
-        public string Item {
-            get {
-                return this.itemField;
-            }
-            set {
-                this.itemField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemChoiceType ItemElementName {
-            get {
-                return this.itemElementNameField;
-            }
-            set {
-                this.itemElementNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/Common.xsd", IncludeInSchema=false)]
-    public enum ItemChoiceType {
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute(":Login")]
-        Login,
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute(":NumerKadrowy")]
-        NumerKadrowy,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class NieobecnosciZastepstwaGetResponse {
@@ -976,6 +902,80 @@ namespace CWI.PKOL.Webservice {
             }
             set {
                 this.rodzajNieobecnosciField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/Common.xsd")]
+    public partial class PracownikPKOL {
+        
+        private string numerKadrowyField;
+        
+        private string akronimField;
+        
+        private string loginField;
+        
+        private string imieField;
+        
+        private string nazwiskoField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public string NumerKadrowy {
+            get {
+                return this.numerKadrowyField;
+            }
+            set {
+                this.numerKadrowyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public string Akronim {
+            get {
+                return this.akronimField;
+            }
+            set {
+                this.akronimField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public string Login {
+            get {
+                return this.loginField;
+            }
+            set {
+                this.loginField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public string Imie {
+            get {
+                return this.imieField;
+            }
+            set {
+                this.imieField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
+        public string Nazwisko {
+            get {
+                return this.nazwiskoField;
+            }
+            set {
+                this.nazwiskoField = value;
             }
         }
     }
@@ -1464,7 +1464,19 @@ namespace CWI.PKOL.Webservice {
         
         private string queryIdField;
         
-        private ZajeciaKomorniczePlatnosciGetResponseWyplaty wyplatyField;
+        private ZajeciaKomorniczePlatnosciGetResponseWyplata[] wyplatyField;
+        
+        private PracownikPKOL pracownikField;
+        
+        private string numerKontaGlownegoField;
+        
+        private FormaWspolpracy formaWspolpracyField;
+        
+        private string kontoSAPField;
+        
+        private string kontoLEOField;
+        
+        private bool czyZajeciaField;
         
         private Info infoField;
         
@@ -1480,8 +1492,9 @@ namespace CWI.PKOL.Webservice {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ZajeciaKomorniczePlatnosciGetResponseWyplaty Wyplaty {
+        [System.Xml.Serialization.XmlArrayAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Wyplata", Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=false)]
+        public ZajeciaKomorniczePlatnosciGetResponseWyplata[] Wyplaty {
             get {
                 return this.wyplatyField;
             }
@@ -1492,77 +1505,12 @@ namespace CWI.PKOL.Webservice {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public Info Info {
-            get {
-                return this.infoField;
-            }
-            set {
-                this.infoField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    public partial class ZajeciaKomorniczePlatnosciGetResponseWyplaty {
-        
-        private PracownikPKOL pracownikField;
-        
-        private ZajeciaKomorniczePlatnosciGetResponseWyplatyWyplata[] wyplataField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public PracownikPKOL Pracownik {
             get {
                 return this.pracownikField;
             }
             set {
                 this.pracownikField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Wyplata", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ZajeciaKomorniczePlatnosciGetResponseWyplatyWyplata[] Wyplata {
-            get {
-                return this.wyplataField;
-            }
-            set {
-                this.wyplataField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    public partial class ZajeciaKomorniczePlatnosciGetResponseWyplatyWyplata {
-        
-        private Faktura fakturaField;
-        
-        private string numerKontaGlownegoField;
-        
-        private FormaWspolpracy formaWspolpracyField;
-        
-        private string kontoSAPField;
-        
-        private string kontoLEOField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable=true)]
-        public Faktura Faktura {
-            get {
-                return this.fakturaField;
-            }
-            set {
-                this.fakturaField = value;
             }
         }
         
@@ -1607,6 +1555,111 @@ namespace CWI.PKOL.Webservice {
             }
             set {
                 this.kontoLEOField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public bool CzyZajecia {
+            get {
+                return this.czyZajeciaField;
+            }
+            set {
+                this.czyZajeciaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public Info Info {
+            get {
+                return this.infoField;
+            }
+            set {
+                this.infoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    public partial class ZajeciaKomorniczePlatnosciGetResponseWyplata {
+        
+        private ZajeciaKomorniczePlatnosciGetResponseWyplataFaktury[] fakturyField;
+        
+        private System.DateTime umowaOdField;
+        
+        private System.DateTime umowaDoField;
+        
+        private System.DateTime dataRozliczeniaField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Faktury", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public ZajeciaKomorniczePlatnosciGetResponseWyplataFaktury[] Faktury {
+            get {
+                return this.fakturyField;
+            }
+            set {
+                this.fakturyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="date")]
+        public System.DateTime UmowaOd {
+            get {
+                return this.umowaOdField;
+            }
+            set {
+                this.umowaOdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="date")]
+        public System.DateTime UmowaDo {
+            get {
+                return this.umowaDoField;
+            }
+            set {
+                this.umowaDoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, DataType="date")]
+        public System.DateTime DataRozliczenia {
+            get {
+                return this.dataRozliczeniaField;
+            }
+            set {
+                this.dataRozliczeniaField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    public partial class ZajeciaKomorniczePlatnosciGetResponseWyplataFaktury {
+        
+        private Faktura fakturaField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public Faktura Faktura {
+            get {
+                return this.fakturaField;
+            }
+            set {
+                this.fakturaField = value;
             }
         }
     }
