@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebserviceClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="507.6" Width="800">
-    <Grid Margin="0,0,4,-4">
+        Title="MainWindow" Height="584.1" Width="800">
+    <Grid Margin="0,0,4,-1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="SendBtn" Content="Send" HorizontalAlignment="Left" Margin="165,402,0,0" VerticalAlignment="Top" Width="141" Height="49" Click="SendBtn_Click" Background="#FFA2CA93" />
-        <TextBox x:Name="PanelTxtBox" HorizontalAlignment="Left" Height="367" Margin="321,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="446"/>
+        <Button x:Name="SendBtn" Content="Send" HorizontalAlignment="Left" Margin="165,475,0,0" VerticalAlignment="Top" Width="141" Height="49" Click="SendBtn_Click" Background="#FFA2CA93" />
+        <TextBox x:Name="PanelTxtBox" HorizontalAlignment="Left" Height="440" Margin="321,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="446"/>
         <Label Content="User:" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top" Width="118"/>
         <Label Content="MethodName:" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="118"/>
         <Label Content="Password:" HorizontalAlignment="Left" Margin="10,113,0,0" VerticalAlignment="Top" Width="118"/>
@@ -24,7 +24,7 @@
         <TextBox x:Name="NamespaceTxtBox" HorizontalAlignment="Left" Height="23" Margin="128,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="540"/>
         <RadioButton x:Name="RequestRadioBtn" Content="Request" HorizontalAlignment="Left" Margin="697,28,0,0" VerticalAlignment="Top" Checked="RequestBtn_Checked"/>
         <RadioButton x:Name="ResponseRadioBtn" Content="Response" HorizontalAlignment="Left" Margin="697,60,0,0" VerticalAlignment="Top" Checked="ResponseBtn_Checked"/>
-        <Button x:Name="SaveBtn" Content="Save" HorizontalAlignment="Left" Margin="10,402,0,0" VerticalAlignment="Top" Width="141" Height="49" Click="SaveBtn_Click" />
+        <Button x:Name="SaveBtn" Content="Save" HorizontalAlignment="Left" Margin="10,475,0,0" VerticalAlignment="Top" Width="141" Height="49" Click="SaveBtn_Click" />
         <Label Content="Host:" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="118"/>
         <TextBox x:Name="HostTxtBox" HorizontalAlignment="Left" Height="23" Margin="128,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="540"/>
         <ComboBox x:Name="IdentityCmbBox" HorizontalAlignment="Left" Margin="128,202,0,0" VerticalAlignment="Top" Width="178" SelectionChanged="MethodNameTxtBox_SelectionChanged"/>
@@ -39,5 +39,6 @@
         <Label Content="Rok" HorizontalAlignment="Left" Margin="10,339,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.312,-0.723" Width="118"/>
         <Label Content="Forma wspópracy:" HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top" Width="113"/>
         <ComboBox x:Name="FormaWspolpracyCmbBox" HorizontalAlignment="Left" Margin="128,257,0,0" VerticalAlignment="Top" Width="178" SelectionChanged="FormaWspolpracyCmbBox_SelectionChanged"/>
+        <Button x:Name="FakturaBtn" Content="Faktura" HorizontalAlignment="Left" Margin="230,379,0,0" VerticalAlignment="Top" Width="76" Click="FakturaBtn_Click"/>
     </Grid>
 </Window>

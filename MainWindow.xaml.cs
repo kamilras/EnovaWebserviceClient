@@ -179,28 +179,6 @@ namespace WebserviceClient
             return podstawoweDaneGet.Serialize();
         }
 
-        public string Reqest_FakturaAdd()
-        {
-            FakturaAdd fakturaAdd = new FakturaAdd();
-            fakturaAdd.Pracownik = new PracownikPKOL();
-
-            fakturaAdd.Faktura = new Faktura()
-            {
-                Pozycje = new FakturaPozycja[]
-                {
-                    new FakturaPozycja()
-                    {
-                        Brutto = 100,
-                        Netto = 80,
-                        NazwaSkladnika = "skladnik",
-                        Opis = "Opis",
-                        VAT = 20
-                    }
-                }
-            };
-
-            return fakturaAdd.Serialize();
-        }
         private void RequestBtn_Checked(object sender, RoutedEventArgs e)
         {
             PanelTxtBox.Text = Request;
@@ -255,7 +233,7 @@ namespace WebserviceClient
                     Request = Reqest_ZajeciaKomorniczePlatnosciGet();
                     break;
                 case "FakturaAdd":
-                    Request = Reqest_FakturaAdd();
+                    Request = FakturaWindow.Reqest_FakturaAdd();
                     break;
                 case "KalendarzSwiatGet":
                     Request = Reqest_KalendarzSwiatGet();
@@ -265,6 +243,18 @@ namespace WebserviceClient
             PanelTxtBox.Text = Request;
             RequestRadioBtn.IsChecked = true;
             Response = string.Empty;
+        }
+
+        private void FakturaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MethodNameTxtBox?.SelectedItem?.ToString() != "FakturaAdd")
+            {
+                MessageBox.Show("Tylko dla metody \"FakturaAdd\"");
+                return;
+            }
+
+            FakturaWindow fakturaWindow = new FakturaWindow(Request);
+            fakturaWindow.Show();
         }
     }
 }

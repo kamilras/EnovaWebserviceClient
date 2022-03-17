@@ -87,12 +87,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FakturaWindow.xaml.cs">
+      <DependentUpon>FakturaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\CreateService.cs" />
     <Compile Include="Utils\Serializer.cs" />
     <Compile Include="Webservice\Data.cs" />
     <Compile Include="Webservice\IIdentifierData.cs" />
     <Compile Include="Webservice\IIdentifierPracownik.cs" />
     <Compile Include="Webservice\IInfoKomunikat.cs" />
+    <Page Include="FakturaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
