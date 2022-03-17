@@ -5,7 +5,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element name="QueryId" type="xs:string"/>
-        <xs:element name="Pracownik" type="id:PracownikPKOL"/>
+        <xs:element name="Pracownik" type="id:Identifier"/>
         <xs:element name="Faktura" type="id:Faktura"/>
         <xs:element name="UmowaOd" type="xs:date"/>
         <xs:element name="UmowaDo" type="xs:date"/>
