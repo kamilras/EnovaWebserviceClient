@@ -5,52 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebserviceClient"
         mc:Ignorable="d"
-        Title="FakturaWindow" Height="362.857" Width="892.857">
-    <Grid Margin="0,0,2,0">
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="140,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="140,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <DatePicker HorizontalAlignment="Left" Margin="140,94,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
-        <DatePicker HorizontalAlignment="Left" Margin="140,122,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="140,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="140,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="140,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <DatePicker HorizontalAlignment="Left" Margin="140,151,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
-        <Label Content="Nr Konta głownego" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="125" Height="25"/>
-        <Label Content="Brutto" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top" Width="125" Height="25"/>
-        <Label Content="DataRoizliczenia" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
-        <Label Content="UmowaDo" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
-        <Label Content="UmowaOd" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="125" Height="25"/>
-        <Label Content="?" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
-        <Label Content="VAT" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
-        <Label Content="Netto" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="432,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="432,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <DatePicker HorizontalAlignment="Left" Margin="432,94,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
-        <DatePicker HorizontalAlignment="Left" Margin="432,122,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="432,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="432,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <DatePicker HorizontalAlignment="Left" Margin="432,151,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
-        <Label Content="NumerFaktury" HorizontalAlignment="Left" Margin="302,39,0,0" VerticalAlignment="Top" Width="125" Height="25"/>
+        Title="FakturaWindow" Height="294.857" Width="892.857">
+    <Grid Margin="0,0,2.4,-0.4">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="UmowaNrKontaGlownegoTxtBox" HorizontalAlignment="Left" Height="22" Margin="140,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="UmowaOdDatePkr" HorizontalAlignment="Left" Margin="140,68,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+        <DatePicker x:Name="UmowaDoDatePkr" HorizontalAlignment="Left" Margin="140,96,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
+        <TextBox x:Name="UmowaBruttoTxtBox" HorizontalAlignment="Left" Height="22" Margin="140,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="UmowaVATTxtBox" HorizontalAlignment="Left" Height="23" Margin="140,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="UmowaNettoTxtBox" HorizontalAlignment="Left" Height="23" Margin="140,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="UmowaDataRozliczeniaDatePkr" HorizontalAlignment="Left" Margin="140,125,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
+        <Label Content="Nr Konta głównego" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="125" Height="29"/>
+        <Label Content="Brutto" HorizontalAlignment="Left" Margin="10,154,0,0" VerticalAlignment="Top" Width="125" Height="25"/>
+        <Label Content="Data rozliczenia" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
+        <Label Content="Umowa do" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
+        <Label Content="Umowa od" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Width="125" Height="25"/>
+        <Label Content="VAT" HorizontalAlignment="Left" Margin="10,209,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
+        <Label Content="Netto" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
+        <TextBox x:Name="FakturaNrTxtBox" HorizontalAlignment="Left" Height="22" Margin="432,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="FakturaOpisTxtBox" HorizontalAlignment="Left" Height="23" Margin="432,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="FakturaOdDatePkr" HorizontalAlignment="Left" Margin="432,94,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+        <DatePicker x:Name="FakturaDoDatePkr" HorizontalAlignment="Left" Margin="432,122,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
+        <TextBox x:Name="FakturaProwizjaTxtBox" HorizontalAlignment="Left" Height="22" Margin="432,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="FakturaTerminPlatnosciDatePkr" HorizontalAlignment="Left" Margin="432,151,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
+        <Label Content="Numer faktury" HorizontalAlignment="Left" Margin="302,39,0,0" VerticalAlignment="Top" Width="125" Height="25"/>
         <Label Content="Prowizja" HorizontalAlignment="Left" Margin="302,180,0,0" VerticalAlignment="Top" Width="125" Height="25"/>
-        <Label Content="TerminPlatnosci" HorizontalAlignment="Left" Margin="302,151,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
+        <Label Content="Termin płatnosci" HorizontalAlignment="Left" Margin="302,151,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
         <Label Content="Do" HorizontalAlignment="Left" Margin="302,120,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
         <Label Content="Od" HorizontalAlignment="Left" Margin="302,94,0,0" VerticalAlignment="Top" Width="125" Height="25"/>
         <Label Content="Opis" HorizontalAlignment="Left" Margin="302,66,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
-        <Label Content="CzyZaplacona" HorizontalAlignment="Left" Margin="302,210,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="703,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="703,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="703,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="703,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="703,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="NazwaSkladnika" HorizontalAlignment="Left" Margin="573,39,0,0" VerticalAlignment="Top" Width="125" Height="25"/>
+        <TextBox x:Name="PozycjaNazwaSkladnikaTxtBox" HorizontalAlignment="Left" Height="22" Margin="703,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PozycjaOpisTxtBox" HorizontalAlignment="Left" Height="23" Margin="703,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PozycjaBruttoTxtBox" HorizontalAlignment="Left" Height="22" Margin="703,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PozycjaVATTxtBox" HorizontalAlignment="Left" Height="23" Margin="703,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PozycjaNettoTxtBox" HorizontalAlignment="Left" Height="23" Margin="703,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Nazwa składnika" HorizontalAlignment="Left" Margin="573,39,0,0" VerticalAlignment="Top" Width="125" Height="25"/>
         <Label Content="Brutto" HorizontalAlignment="Left" Margin="573,98,0,0" VerticalAlignment="Top" Width="125" Height="25"/>
         <Label Content="Opis" HorizontalAlignment="Left" Margin="573,66,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
         <Label Content="VAT" HorizontalAlignment="Left" Margin="573,153,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
         <Label Content="Netto" HorizontalAlignment="Left" Margin="573,128,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
-        <Button Content="Zapisz" HorizontalAlignment="Left" Margin="703,254,0,0" VerticalAlignment="Top" Width="120" Height="45"/>
+        <Button x:Name="ZapiszBtn" Content="Zapisz" HorizontalAlignment="Left" Margin="642,205,0,0" VerticalAlignment="Top" Width="120" Height="45" Click="ZapiszBtn_Click"/>
         <Label Content="UMOWA" HorizontalAlignment="Left" Margin="88,8,0,0" VerticalAlignment="Top" Width="93"/>
         <Label Content="FAKTURA" HorizontalAlignment="Left" Margin="401,10,0,0" VerticalAlignment="Top" Width="93"/>
         <Label Content="POZYCJA" HorizontalAlignment="Left" Margin="703,8,0,0" VerticalAlignment="Top" Width="93"/>
+        <CheckBox x:Name="FakturaCzyZaplaconaChkBox" Content="Czy zapłacona" HorizontalAlignment="Left" Margin="432,212,0,0" VerticalAlignment="Top" Height="18" Width="120"/>
 
     </Grid>
 </Window>

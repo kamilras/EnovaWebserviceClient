@@ -30,22 +30,24 @@ namespace WebserviceClient
         public MainWindow()
         {
             InitializeComponent();
-            LoadConfiguration();
+            try
+            {
+                LoadConfiguration();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public string Request { get; set; }
         public string Response { get; set; }
+        public FakturaAdd FakturaAdd { get; set; }
 
         private void LoadConfiguration()
         {
-            var map = new ExeConfigurationFileMap();
-            map.ExeConfigFilename = Path.Combine(
-                  AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
-                  ConfigurationManager.AppSettings["ConfigFile"]
-            );
-
-            var config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
-            AppSettingsSection appSettings = config.GetSection("appSettings") as AppSettingsSection;
+            AppSettingsSection appSettings = GetSettings("WebserviceClient.config")
+                                            .GetSection("appSettings") as AppSettingsSection;
 
             List<string> metodyLista = new List<string>()
             {
@@ -78,6 +80,15 @@ namespace WebserviceClient
             MethodNameTxtBox.SelectedItem = appSettings.Settings["MethodName"].Value;
 
             RequestRadioBtn.IsChecked = true;
+        }
+
+        private Configuration GetSettings(string name)
+        {
+            var map = new ExeConfigurationFileMap();
+            map.ExeConfigFilename = Path.Combine(
+                  AppDomain.CurrentDomain.BaseDirectory, name
+            );
+            return ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
         }
 
         private void SendBtn_Click(object sender, RoutedEventArgs e)
@@ -116,19 +127,12 @@ namespace WebserviceClient
                     Response = "Nie znaleziono metody";
                     break;
             }
-
             ResponseRadioBtn.IsChecked = true;
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            var map = new ExeConfigurationFileMap();
-            map.ExeConfigFilename = Path.Combine(
-                  AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
-                  ConfigurationManager.AppSettings["ConfigFile"]
-            );
-
-            var config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
+            Configuration config = GetSettings("WebserviceClient.config");
             AppSettingsSection appSettings = config.GetSection("appSettings") as AppSettingsSection;
 
             appSettings.Settings["Host"].Value = HostTxtBox.Text;
@@ -179,6 +183,24 @@ namespace WebserviceClient
             return podstawoweDaneGet.Serialize();
         }
 
+        private string Reqest_FakturaAdd()
+        {
+            if (FakturaAdd == null)
+            {
+                FakturaAdd = new FakturaAdd()
+                {
+                    UmowaOd = DateFromDatePicker.DisplayDate,
+                    UmowaDo = DateToDatePicker.DisplayDate,
+                    DataRozliczenia = DateToDatePicker.DisplayDate
+                };
+                FakturaAdd.Faktura = new Faktura();
+                FakturaAdd.Faktura.Pozycje = new FakturaPozycja[] { new FakturaPozycja() };
+            }
+            FakturaAdd.Pracownik = new Identifier() { Item = PracownikTxtBox.Text, ItemElementName = (ItemChoiceType)IdentityCmbBox.SelectedItem };
+            FakturaAdd.FormaWspolpracy = (FormaWspolpracy)FormaWspolpracyCmbBox.SelectedItem;
+            return FakturaAdd.Serialize();
+        }
+
         private void RequestBtn_Checked(object sender, RoutedEventArgs e)
         {
             PanelTxtBox.Text = Request;
@@ -218,24 +240,35 @@ namespace WebserviceClient
             Update();
         }
 
+        private void FakturaAddUpdate(object sender, FakturaEventArgs e)
+        {
+            FakturaAdd = e.FakturaAdd;
+            Update();
+        }
+
         public void Update()
         {
             string metoda = MethodNameTxtBox?.SelectedItem?.ToString();
             switch (metoda)
             {
                 case "NieobecnosciZastepstwaGet":
+                    Disable(RokTxtBox);
                     Request = Reqest_NieobecnosciZastepstwaGet();
                     break;
                 case "PodstawoweDaneGet":
+                    Disable(RokTxtBox);
                     Request = Reqest_PodstawoweDaneGet();
                     break;
                 case "ZajeciaKomorniczePlatnosciGet":
+                    Disable(RokTxtBox);
                     Request = Reqest_ZajeciaKomorniczePlatnosciGet();
                     break;
                 case "FakturaAdd":
-                    Request = FakturaWindow.Reqest_FakturaAdd();
+                    Disable(RokTxtBox, DateFromDatePicker, DateToDatePicker);
+                    Request = Reqest_FakturaAdd();
                     break;
                 case "KalendarzSwiatGet":
+                    Disable(IdentityCmbBox, PracownikTxtBox, FormaWspolpracyCmbBox, DateFromDatePicker, DateToDatePicker);
                     Request = Reqest_KalendarzSwiatGet();
                     break;
             }
@@ -245,6 +278,23 @@ namespace WebserviceClient
             Response = string.Empty;
         }
 
+        private void Disable(params Control[] elem)
+        {
+            List<Control> listaElementow = new List<Control>()
+            {
+                PracownikTxtBox, DateFromDatePicker, DateToDatePicker, RokTxtBox, IdentityCmbBox, FormaWspolpracyCmbBox
+            };
+
+            foreach (var el in elem)
+            {
+                el.IsEnabled = false;
+                listaElementow.Remove(el);
+            }
+
+            foreach (var el in listaElementow)
+                el.IsEnabled = true;
+        }
+
         private void FakturaBtn_Click(object sender, RoutedEventArgs e)
         {
             if (MethodNameTxtBox?.SelectedItem?.ToString() != "FakturaAdd")
@@ -252,8 +302,10 @@ namespace WebserviceClient
                 MessageBox.Show("Tylko dla metody \"FakturaAdd\"");
                 return;
             }
+            Request = PanelTxtBox.Text;
 
             FakturaWindow fakturaWindow = new FakturaWindow(Request);
+            fakturaWindow.FakturaAddChanged += FakturaAddUpdate;
             fakturaWindow.Show();
         }
     }
